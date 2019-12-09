@@ -13,7 +13,7 @@ int[,] grid = new int[20, 20];
  
     Transform snakeTransform;
     float lastMove;
-    float timeInBetweenMoves = 0.5f;
+    float timeInBetweenMoves = 0.25f;
     Vector3 direction;
  
     bool hasLost;
@@ -37,7 +37,8 @@ int[,] grid = new int[20, 20];
     private void Update()
     {
         if (hasLost)
-        {
+        {   
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
             return;
         }
  
@@ -141,6 +142,7 @@ int[,] grid = new int[20, 20];
                 {
                     hasLost = true;
                     Debug.Log("You lose.");
+
                     return;
                 }
  
