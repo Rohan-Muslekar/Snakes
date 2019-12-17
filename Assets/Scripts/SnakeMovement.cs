@@ -21,6 +21,7 @@ int[,] grid = new int[20, 20];
     public GameObject applePrefab;
 
     public Text scoreText;
+    public float times = 2.0f;
  
     private void Start()
     {   scoreText.text = "Score: " + snakeScore.ToString();
@@ -33,11 +34,15 @@ int[,] grid = new int[20, 20];
         go.transform.position = new Vector3(10*1.0f + 0.5f, 10*1.0f + 0.5f,5.0f);
         go.name = "Apple";
     }
- 
+    
+    IEnumerator timer(){
+        yield return new WaitForSeconds(times);
+    }
     private void Update()
     {
         if (hasLost)
-        {   
+        {      
+            StartCoroutine(timer());
             UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
             return;
         }
